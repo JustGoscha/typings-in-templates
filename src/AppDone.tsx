@@ -1,26 +1,32 @@
 import * as React from 'react'
 import { Component } from 'react'
 
+import TextField from 'material-ui/TextField'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 export class App extends Component<{}, {}> {
   render() {
     return (
-      <div>
-        <h1>Awesome APP</h1>
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <CoolButton 
+            label="Push me"
+            onClick={(event) => event.clientX > 100}
+          />
+          <br/>
+          <TextField floatingLabelText="Type Something"/>
+        </div>
+      </MuiThemeProvider>
     )
   }
 }
 
-
-
-
-
-
-
-
-// import TextField from 'material-ui/TextField'
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+const CoolButton = (props: {
+  label: string,
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => boolean
+}) => (
+  <button onClick={props.onClick}>{props.label}</button>
+)
 
 
 
@@ -32,7 +38,7 @@ export class App extends Component<{}, {}> {
 
 // // lets say you have an application and you have an
 // interface MovieStore {
-//   getMovies(): Movie[]
+//   getMovies(): Promise<Movie[]>
 // }
 
 // class MovieList extends Component<{ movieStore: MovieStore }, any> {
@@ -48,7 +54,7 @@ export class App extends Component<{}, {}> {
 //   }
 // }
 
-// // then you have a component that gets the movies and passes it down
+// then you have a component that gets the movies and passes it down
 // // to another class that renders it
 // const MovieDetailView = (props: { movie: Movie }) => (
 //   <div>{props.movie}</div>
